@@ -102,7 +102,7 @@ img { display: block; max-width: 100%; }
 }
 .signal-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 999px; box-shadow: 0 0 18px rgba(36,214,214,.9); flex: 0 0 auto; }
 .hero h1 {
-  margin: 28px 0 0;
+  margin: 0;
   font-size: clamp(88px, 10.2vw, 166px);
   line-height: .79;
   letter-spacing: -.075em;
