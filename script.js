@@ -14,7 +14,7 @@
 
     editableContent.forEach((el) => {
       const key = el.dataset.contentKey;
-      const value = window.JML_CONTENT?.[key]?.[next];
+      const value = window.LAST_THYLACINE_CONTENT?.[key]?.[next];
       if (typeof value === 'string') el.textContent = value;
     });
 
@@ -28,11 +28,15 @@
       );
     }
 
-    try { localStorage.setItem('jml-language', next); } catch (_) {}
+    try { localStorage.setItem('last-thylacine-language', next); } catch (_) {}
   };
 
   let saved = 'en';
-  try { saved = localStorage.getItem('jml-language') || 'en'; } catch (_) {}
+  try {
+    saved = localStorage.getItem('last-thylacine-language')
+      || localStorage.getItem('jml-language')
+      || 'en';
+  } catch (_) {}
   setLanguage(saved);
 
   if (toggle) {

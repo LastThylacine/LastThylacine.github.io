@@ -5,7 +5,7 @@
   The website will automatically use the correct language.
   You do not need to edit index.html for these descriptions.
 */
-window.JML_CONTENT = {
+window.LAST_THYLACINE_CONTENT = {
   photoAnomaly: {
     en: "I released this game after a year of inactivity, and right now it's my only project available on Google Play",
     ru: "Я выпустил эту игру спустя год застоя, и сейчас это единственный мой проект доступный в Google play"
@@ -24,10 +24,5 @@ window.JML_CONTENT = {
   earlierReleases: {
     en: "Over the past five years, I've released more than 30 games on Google Play and other platforms. Most of my older releases are no longer publicly available, except perhaps on websites that repost APKs",
     ru: "За последние пять лет я выпустил более 30 игр в Google Play и на других платформах. Большинство старых релизов сейчас уже недоступны публично, разве что на сайтах которые репостят APK"
-  },
-
-  jurassicRemake: {
-    en: "I made a fan remake of Jurassic Park Builder after the original game was discontinued. Development stopped after I received a cease-and-desist from Universal",
-    ru: "Я сделал фанатский ремейк Jurassic Park Builder после закрытия оригинальной игры. Разработка остановилась после того, как я получил cease-and-desist от Universal"
   }
 };
