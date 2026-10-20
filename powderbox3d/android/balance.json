@@ -1,0 +1,26 @@
+{
+    "GraceMinutes": 10,
+    "CooldownSeconds": 180,
+    "SkipFirstEntry": true,
+    "FreeSaveSlots": 2,
+    "FreeBlueprintSlots": 3,
+    "BigWorldChunks": 29,
+    "Materials": [
+        { "Id": "Clone", "Videos": 2 },
+        { "Id": "Void", "Videos": 2 },
+        { "Id": "Virus", "Videos": 2 },
+        { "Id": "PowerLightning", "Videos": 1 },
+        { "Id": "Thermite", "Videos": 1 }
+    ],
+    "Blueprints": [
+        { "Id": "village", "Videos": 1 },
+        { "Id": "laboratory", "Videos": 1 },
+        { "Id": "volcano", "Videos": 1 },
+        { "Id": "castle", "Videos": 1 }
+    ],
+    "Scenarios": [
+        { "Id": "Dam", "Videos": 1 },
+        { "Id": "LavaFields", "Videos": 1 }
+    ],
+    "Off": []
+}
