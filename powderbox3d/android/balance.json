@@ -22,5 +22,8 @@
         { "Id": "Dam", "Videos": 1 },
         { "Id": "LavaFields", "Videos": 1 }
     ],
-    "Off": []
+    "Off": [],
+    "YouTube": "https://www.youtube.com/@last_thylacine",
+    "Telegram": "https://t.me/jmlstudio",
+    "Discord": "https://discord.gg/r7d6qbRmqG"
 }
