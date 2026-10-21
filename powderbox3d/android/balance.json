@@ -1,7 +1,7 @@
 {
-    "GraceMinutes": 10,
-    "CooldownSeconds": 180,
-    "SkipFirstEntry": true,
+    "GraceMinutes": 1,
+    "CooldownSeconds": 60,
+    "SkipFirstEntry": false,
     "FreeSaveSlots": 2,
     "FreeBlueprintSlots": 3,
     "BigWorldChunks": 29,
