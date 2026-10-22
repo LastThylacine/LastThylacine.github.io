@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&display=swap");
 
-/* Last Thylacine. One blue field, the logo and name made of sand, a darker step of blue under it. */
+/* Last Thylacine. One screen: the Powder Box 3D trailer behind a sand toy made of the logo and the name,
+   the game on the right, social links on the floor. */
 :root {
   --base: #1d4fb0;
   --bar: #1a46a0;
@@ -9,7 +10,7 @@
   --text: #eef3ff;
   --soft: #b0c4ec;
   --font: "Bricolage Grotesque", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --pad: clamp(16px, 4vw, 48px);
+  --pad: clamp(16px, 4vw, 64px);
 }
 
 * { box-sizing: border-box; }
@@ -34,44 +35,38 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--title); outline
 .nav a { font: 500 16px/1 var(--font); color: var(--text); opacity: .85; text-decoration: none; transition: opacity .2s; }
 .nav a:hover { opacity: 1; }
 
-/* ---------- hero: the sand ---------- */
+/* ---------- hero: trailer behind the sand ---------- */
 .hero {
   position: relative;
-  height: clamp(420px, calc(100svh - 68px), 860px);
+  height: clamp(560px, calc(100svh - 68px), 980px);
   overflow: hidden;
   touch-action: pan-y;
   user-select: none;
   -webkit-user-select: none;
   cursor: crosshair;
-  background: var(--base);
+  background: var(--ground);
 }
+.hero__video { position: absolute; inset: -12px; width: calc(100% + 24px); height: calc(100% + 24px); max-width: none; object-fit: cover; filter: blur(3px); }
+.hero__scrim { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(13, 35, 92, .84), rgba(13, 35, 92, .7) 50%, rgba(13, 35, 92, .58)); }
+@media (max-width: 899px) { .hero__scrim { background: rgba(13, 35, 92, .74); } }
 .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 #sand { image-rendering: pixelated; image-rendering: crisp-edges; }
 #art { transition: opacity .35s ease; }
 #art.off { opacity: 0; transition: none; }
-.hero noscript img { position: absolute; left: 50%; top: 45%; width: min(40vw, 320px); translate: -50% -50%; }
+.hero__nojs { position: absolute; left: var(--pad); top: 20%; width: min(30vw, 300px); }
 
-/* ---------- Powder Box 3D ---------- */
-.ground { padding: clamp(36px, 5vw, 64px) max(var(--pad), env(safe-area-inset-right, 0px)) clamp(48px, 6vw, 80px) max(var(--pad), env(safe-area-inset-left, 0px)); background: var(--ground); }
-.pb { max-width: 1200px; margin: 0 auto; display: grid; gap: 22px; }
-.screen { position: relative; aspect-ratio: 16 / 9; border-radius: 20px; overflow: hidden; background: #0b1a3d; }
-.screen video { width: 100%; height: 100%; object-fit: cover; }
-.play {
-  position: absolute; left: 50%; top: 50%; translate: -50% -50%;
-  width: clamp(64px, 8vw, 96px); aspect-ratio: 1;
-  display: grid; place-items: center; padding: 0;
-  border: 0; border-radius: 50%; cursor: pointer;
-  background: #fff; color: #111;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
-  transition: transform .18s ease;
+.game {
+  position: absolute; z-index: 2;
+  right: max(var(--pad), env(safe-area-inset-right, 0px)); top: 45%; translate: 0 -50%;
+  width: min(440px, 38%);
+  display: grid; gap: 18px; justify-items: start;
+  cursor: auto;
 }
-.play:hover { transform: scale(1.07); }
-.play:active { transform: scale(.95); }
-.play svg { width: 32%; margin-left: 8%; fill: currentColor; }
-.pb-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 20px; }
-.pb-title { display: flex; align-items: center; gap: 16px; min-width: 0; }
-.app-icon { width: 68px; height: 68px; border-radius: 17px; flex: none; }
-.pb h2 { margin: 0; font: 800 clamp(28px, 3.6vw, 46px)/1.05 var(--font); letter-spacing: -.02em; color: var(--title); }
+.game__head { display: flex; align-items: center; gap: 16px; }
+.app-icon { width: 72px; height: 72px; border-radius: 18px; flex: none; }
+.game h2 { margin: 0; font: 800 clamp(30px, 3.4vw, 48px)/1.02 var(--font); letter-spacing: -.02em; color: var(--title); }
+.game p { margin: 0; font: 500 clamp(17px, 1.4vw, 20px)/1.45 var(--font); color: var(--text); max-width: 34ch; }
+.game__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .badge {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 8px 18px 9px 12px;
@@ -85,29 +80,58 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--title); outline
 .badge svg { width: 26px; height: 26px; flex: none; }
 .badge span { display: grid; font: 500 21px/1 "Segoe UI", Roboto, Arial, sans-serif; letter-spacing: -.01em; }
 .badge small { font-size: 10px; font-weight: 500; letter-spacing: .04em; margin-bottom: 3px; }
+.watch {
+  display: inline-flex; align-items: center; gap: 10px;
+  height: 52px; padding: 0 20px;
+  border: 0; border-radius: 10px; cursor: pointer;
+  background: rgba(255, 255, 255, .14); color: var(--text);
+  font: 700 16px/1 var(--font);
+  transition: background-color .2s;
+}
+.watch:hover { background: rgba(255, 255, 255, .24); }
+.watch svg { width: 12px; height: 12px; fill: currentColor; }
+
+.icons {
+  position: absolute; z-index: 2; left: 50%; bottom: 11%; translate: -50% 0;
+  display: flex; gap: 10px; cursor: auto;
+}
+.icons a { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: rgba(13, 35, 92, .55); color: var(--text); transition: background-color .2s, transform .2s; }
+.icons a:hover { background: rgba(13, 35, 92, .85); transform: translateY(-2px); }
+.icons svg { width: 20px; height: 20px; fill: currentColor; }
+
+/* ---------- trailer with sound ---------- */
+.tv { width: min(1200px, 94vw); padding: 0; border: 0; border-radius: 16px; background: #000; overflow: visible; }
+.tv::backdrop { background: rgba(5, 12, 32, .85); }
+.tv video { width: 100%; height: auto; border-radius: 16px; }
+.tv__close { position: absolute; right: -6px; top: -52px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: #fff; color: #111; font: 400 28px/1 var(--font); cursor: pointer; }
 
 /* ---------- footer ---------- */
 .foot {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 28px;
-  padding: 28px max(var(--pad), env(safe-area-inset-right, 0px)) max(28px, env(safe-area-inset-bottom, 0px)) max(var(--pad), env(safe-area-inset-left, 0px));
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 28px;
+  padding: 24px max(var(--pad), env(safe-area-inset-right, 0px)) max(24px, env(safe-area-inset-bottom, 0px)) max(var(--pad), env(safe-area-inset-left, 0px));
   background: var(--bar);
 }
-.mail { font: 700 20px/1.2 var(--font); color: var(--title); text-decoration: none; letter-spacing: -.01em; }
+.mail { font: 700 18px/1.2 var(--font); color: var(--title); text-decoration: none; letter-spacing: -.01em; }
 .mail:hover { text-decoration: underline; text-underline-offset: 4px; }
-.icons { display: flex; gap: 8px; }
-.icons a { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 255, 255, .1); color: var(--text); transition: background-color .2s, transform .2s; }
-.icons a:hover { background: rgba(255, 255, 255, .2); transform: translateY(-2px); }
-.icons svg { width: 19px; height: 19px; fill: currentColor; }
 .links { display: flex; flex-wrap: wrap; gap: 6px 20px; font: 500 14px/1.4 var(--font); color: var(--soft); }
 .links a { text-decoration: none; }
 .links a:hover { color: var(--text); }
 
+/* narrow screens: the sand name on top, the game under it, the links on the floor */
+@media (max-width: 899px) {
+  .hero { height: max(640px, calc(100svh - 68px)); }
+  .game { left: max(var(--pad), env(safe-area-inset-left, 0px)); right: max(var(--pad), env(safe-area-inset-right, 0px)); top: 40%; translate: none; width: auto; gap: 14px; }
+  .game p { max-width: 40ch; }
+  .icons { bottom: 10%; }
+}
 @media (max-width: 600px) {
   .nav { gap: 18px; }
   .nav a { font-size: 15px; }
   .brand { font-size: 17px; }
-  .app-icon { width: 54px; height: 54px; border-radius: 14px; }
-  .screen { border-radius: 14px; }
+  .app-icon { width: 56px; height: 56px; border-radius: 14px; }
+  .watch { height: 50px; padding: 0 16px; }
+  .icons { gap: 8px; }
+  .icons a { width: 42px; height: 42px; }
 }
 @media (max-width: 400px) {
   .brand span { display: none; }

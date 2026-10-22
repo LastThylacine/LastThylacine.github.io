@@ -1,30 +1,31 @@
 // Last Thylacine site: the trailer and the sand logo.
 
-// Trailer: while it is on screen, a silent loop of the first 24 s plays.
-// The white button restarts the whole film with sound and controls.
+// Trailer: the first 24 s loop silently behind the sand (the end card is skipped).
+// "Watch trailer" opens the whole film with sound in a dialog.
 (() => {
-  const v = document.getElementById('trailer');
-  const btn = document.getElementById('play');
-  if (!v || !btn) return;
+  const bg = document.getElementById('bg');
+  const btn = document.getElementById('watch');
+  const tv = document.getElementById('tv');
+  const tvv = document.getElementById('tvv');
+  const close = document.getElementById('tvclose');
+  if (!bg) return;
   const LOOP_END = 24.2;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let full = false;
-  v.muted = true;
-  const loop = () => { if (!reduce) v.play().catch(() => {}); };
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(entries => entries.forEach(e => {
-      if (e.isIntersecting) { if (!full) loop(); } else if (!full) v.pause();
-    }), { threshold: 0.25 }).observe(v);
-  } else loop();
-  v.addEventListener('timeupdate', () => { if (!full && v.currentTime > LOOP_END) v.currentTime = 0; });
+  bg.muted = true;
+  const loop = () => { if (!reduce) bg.play().catch(() => {}); };
+  loop();
+  bg.addEventListener('timeupdate', () => { if (bg.currentTime > LOOP_END) bg.currentTime = 0; });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) bg.pause(); else if (!tv.open) loop(); });
+  if (!btn || !tv || !tvv || !tv.showModal) { if (btn) btn.hidden = true; return; }
   btn.addEventListener('click', () => {
-    full = true; v.loop = false; v.currentTime = 0; v.muted = false; v.controls = true; btn.hidden = true;
-    v.play().catch(() => {});
+    bg.pause();
+    tv.showModal();
+    tvv.currentTime = 0;
+    tvv.play().catch(() => {});
   });
-  v.addEventListener('ended', () => {
-    full = false; v.muted = true; v.controls = false; v.loop = true; btn.hidden = false; v.currentTime = 0;
-    loop();
-  });
+  close.addEventListener('click', () => tv.close());
+  tv.addEventListener('click', e => { if (e.target === tv) tv.close(); });
+  tv.addEventListener('close', () => { tvv.pause(); loop(); });
 })();
 
 // The logo and the name are a sand sculpture. Moving the mouse over it breaks it, pressing pours
@@ -57,34 +58,33 @@
   let lastInput = 0, trickleUntil = 0, trickleX = 0;
   const ptr = { x: 0, y: 0, px: 0, py: 0, down: false, has: false };
 
-  // Logo beside a two-line name on wide screens, logo above the name on narrow ones,
-  // centred in the space above the dunes.
+  // Wide screens: logo above the two-line name in the left half (the game sits on the right).
+  // Narrow screens: logo beside the name in the top third (the game sits under it).
   function geometry() {
     const aspect = 447 / 384;
     actx.font = FONT(100);
     const perPx = actx.measureText('Thylacine').width / 100;
     const cap = (actx.measureText('L').actualBoundingBoxAscent || 70) / 100;
-    const pad = Math.max(16, Math.min(72, W * 0.06));
-    const floor = H * 0.9;
+    const pad = Math.max(16, Math.min(64, W * 0.04));
     let logoBox, fs, tx, blockTop;
-    if (W >= 640) {
-      const lh = Math.min(H * 0.44, 520), lw = lh * aspect, gap = lw * 0.12;
-      fs = Math.min(lh * 0.5, (W - pad * 2 - lw - gap) / (perPx * 1.03));
-      const blockW = lw + gap + perPx * fs;
-      const left = Math.max(pad, (W - blockW) / 2);
-      const top = (floor - lh) / 2;
-      logoBox = { x: left, y: top, w: lw, h: lh };
-      tx = left + lw + gap;
-      blockTop = top + lh * 0.5 - (cap * fs * 2 + fs * 0.24) / 2;
-    } else {
-      fs = Math.min((W - pad * 2) / (perPx * 1.04), H * 0.15);
-      const lh = Math.min(H * 0.3, (W - pad * 2) / aspect), lw = lh * aspect;
-      const gapY = H * 0.05;
+    if (W >= 900) {
+      const x0 = pad, aw = W * 0.56 - pad, y0 = H * 0.05, ah = H * 0.8;
+      const lh = Math.min(ah * 0.42, 380), lw = lh * aspect;
+      fs = Math.min(aw / (perPx * 1.04), lh * 0.55);
+      const gapY = lh * 0.08;
       const total = lh + gapY + cap * fs * 2 + fs * 0.24;
-      const top = Math.max(H * 0.06, (floor - total) / 2);
-      logoBox = { x: pad, y: top, w: lw, h: lh };
-      tx = pad;
+      const top = y0 + (ah - total) / 2;
+      logoBox = { x: x0, y: top, w: lw, h: lh };
+      tx = x0;
       blockTop = top + lh + gapY;
+    } else {
+      const x0 = pad, aw = W - pad * 2, y0 = H * 0.05, ah = H * 0.32;
+      const lh = Math.min(ah * 0.85, aw * 0.32 / aspect), lw = lh * aspect, gap = lw * 0.12;
+      fs = Math.min(lh * 0.55, (aw - lw - gap) / (perPx * 1.03));
+      const top = y0 + (ah - lh) / 2;
+      logoBox = { x: x0, y: top, w: lw, h: lh };
+      tx = x0 + lw + gap;
+      blockTop = top + lh * 0.5 - (cap * fs * 2 + fs * 0.24) / 2;
     }
     const step = cap * fs + fs * 0.24;
     return {
@@ -152,7 +152,8 @@
     restore();
     base = lockIdx.length + duneIdx.length; total = base;
     shattered = false; rew = null;
-    trickleX = Math.round(cols * 0.88);
+    // the opening trickle lands on the thylacine's head
+    trickleX = Math.max(1, Math.min(cols - 2, Math.round((G.logo.x + G.logo.w * 0.55) / cell)));
     ready = true;
     render(performance.now());
   }
@@ -345,7 +346,7 @@
     if (!ptr.has) { ptr.px = ptr.x; ptr.py = ptr.y; ptr.has = true; }
   }
   hero.addEventListener('pointerdown', e => {
-    if (!ready || rew) return;
+    if (!ready || rew || e.target.closest('.game, .icons, a, button')) return;
     toGrid(e); ptr.px = ptr.x; ptr.py = ptr.y;
     ptr.down = true; lastInput = performance.now();
     erodeAt(ptr.x, ptr.y, 7);
