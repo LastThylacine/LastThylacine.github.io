@@ -19,10 +19,7 @@
         { "Id": "volcano", "Videos": 1 },
         { "Id": "castle", "Videos": 1 }
     ],
-    "Scenarios": [
-        { "Id": "Dam", "Videos": 1 },
-        { "Id": "LavaFields", "Videos": 1 }
-    ],
+    "Scenarios": [],
     "Off": [],
     "YouTube": "https://www.youtube.com/@last_thylacine",
     "Telegram": "https://t.me/jmlstudio",
