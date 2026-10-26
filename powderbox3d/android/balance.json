@@ -1,11 +1,19 @@
 {
-    "PremiumMinutes": 10,
     "GraceMinutes": 10,
     "CooldownSeconds": 180,
     "SkipFirstEntry": true,
     "FreeSaveSlots": 2,
     "FreeBlueprintSlots": 3,
     "BigWorldChunks": 29,
+    "OpenMinutes": 10,
+    "OpenCooldownSeconds": 300,
+    "BonusItems": 2,
+    "GiftItems": 3,
+    "LockedMaterials": [
+        "Clone", "Void", "Virus", "PowerLightning", "Thermite", "Dirt", "Snow", "Ash", "Obsidian", "Brick", "Glass",
+        "Diamond", "Acid", "Oil", "Methane", "Hydrogen", "MoltenMetal", "Plant", "Flower", "Nitro", "Gunpowder"
+    ],
+    "LockedBlueprints": ["village", "laboratory", "volcano", "castle", "barrel", "oil-tank"],
     "Materials": [
         { "Id": "Clone", "Videos": 2 },
         { "Id": "Void", "Videos": 2 },
@@ -21,6 +29,7 @@
     ],
     "Scenarios": [],
     "Off": [],
+    "CheckOrigin": true,
     "YouTube": "https://www.youtube.com/@last_thylacine",
     "Telegram": "https://t.me/jmlstudio",
     "Discord": "https://discord.gg/r7d6qbRmqG"
