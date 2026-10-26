@@ -1,4 +1,5 @@
 {
+    "PremiumMinutes": 10,
     "GraceMinutes": 10,
     "CooldownSeconds": 180,
     "SkipFirstEntry": true,
