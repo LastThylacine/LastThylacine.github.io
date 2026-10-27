@@ -5,15 +5,12 @@
     "FreeSaveSlots": 2,
     "FreeBlueprintSlots": 3,
     "BigWorldChunks": 29,
-    "OpenMinutes": 10,
+    "OpenMinutes": 30,
     "OpenCooldownSeconds": 300,
     "BonusItems": 2,
     "GiftItems": 3,
-    "LockedMaterials": [
-        "Clone", "Void", "Virus", "PowerLightning", "Thermite", "Dirt", "Snow", "Ash", "Obsidian", "Brick", "Glass",
-        "Diamond", "Acid", "Oil", "Methane", "Hydrogen", "MoltenMetal", "Plant", "Flower", "Nitro", "Gunpowder"
-    ],
-    "LockedBlueprints": ["village", "laboratory", "volcano", "castle", "barrel", "oil-tank"],
+    "LockedMaterials": ["Clone", "Void", "Virus", "PowerLightning", "Thermite"],
+    "LockedBlueprints": ["village", "laboratory", "volcano", "castle"],
     "Materials": [
         { "Id": "Clone", "Videos": 2 },
         { "Id": "Void", "Videos": 2 },
