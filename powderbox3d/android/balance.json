@@ -27,7 +27,9 @@
         { "Id": "volcano", "Videos": 1 },
         { "Id": "castle", "Videos": 1 }
     ],
-    "Scenarios": [],
+    "Scenarios": [
+        { "Id": "Dam", "Videos": 1 }
+    ],
     "Off": [],
     "CheckOrigin": true,
     "YouTube": "https://www.youtube.com/@last_thylacine",
