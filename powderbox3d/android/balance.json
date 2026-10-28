@@ -6,7 +6,7 @@
     "FreeBlueprintSlots": 3,
     "BigWorldChunks": 29,
     "OpenMinutes": 30,
-    "OpenCooldownSeconds": 300,
+    "OpenCooldownSeconds": 0,
     "BonusItems": 2,
     "GiftItems": 3,
     "LockedMaterials": ["Clone", "Void", "Virus", "PowerLightning", "Thermite"],
