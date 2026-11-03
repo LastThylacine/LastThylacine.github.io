@@ -140,8 +140,17 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--title); outline
   * { transition: none !important; }
 }
 
-/* ---------- privacy policy pages ---------- */
-.legal-page { background: #f4f6fb; color: #1b2233; }
+/* ---------- text pages: privacy policies, account deletion. Dark only, no switch ---------- */
+.legal-page {
+  --page: #0c1730;
+  --card: #13213f;
+  --line: #273a63;
+  --body: #c9d5ee;
+  --head: #fff3dc;
+  --link: #9cbcff;
+  color-scheme: dark;
+  background: var(--page); color: var(--body);
+}
 .legal-wrap { max-width: 820px; margin: 0 auto; padding: 0 20px 80px; }
 .legal-nav {
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
@@ -152,49 +161,49 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--title); outline
 .legal-nav a { display: inline-flex; align-items: center; gap: 10px; color: var(--title); text-decoration: none; font: 700 18px/1 var(--font); }
 .legal-nav img { width: 38px; height: auto; }
 .legal-nav strong { font-weight: 700; }
-.legal-article { font: 400 17px/1.7 var(--font); color: #2a3247; }
-.legal-article h1 { margin: 0 0 20px; font: 800 clamp(28px, 4vw, 38px)/1.1 var(--font); letter-spacing: -.02em; color: #101727; }
-.legal-article h2 { margin: 32px 0 10px; font: 700 21px/1.3 var(--font); color: #101727; }
+.legal-article { font: 400 17px/1.7 var(--font); color: var(--body); }
+.legal-article h1 { margin: 0 0 20px; font: 800 clamp(28px, 4vw, 38px)/1.1 var(--font); letter-spacing: -.02em; color: var(--head); }
+.legal-article h2 { margin: 32px 0 10px; font: 700 21px/1.3 var(--font); color: var(--head); }
 .legal-article p { margin: 0 0 16px; }
 .legal-article ul { margin: 0 0 18px; padding-left: 24px; }
 .legal-article li { margin-bottom: 6px; }
-.legal-article a { color: var(--base); text-underline-offset: 3px; }
-.legal-article hr { border: 0; border-top: 1px solid #d6dcea; margin: 32px 0; }
+.legal-article a { color: var(--link); text-underline-offset: 3px; }
+.legal-article hr { border: 0; border-top: 1px solid var(--line); margin: 32px 0; }
 
-/* ---------- account deletion page (powderbox3d/delete-account) ---------- */
+/* account deletion page (powderbox3d/delete-account) */
 .lang select {
   height: 36px; padding: 0 10px; border: 0; border-radius: 8px;
   background: rgba(255, 255, 255, .14); color: var(--text); font: 500 15px/1 var(--font); cursor: pointer;
 }
-.lang option { color: #1b2233; background: #fff; }
-.del-app { display: flex; align-items: center; gap: 12px; margin: 0 0 14px !important; font: 700 17px/1 var(--font); color: #101727; }
+.lang option { color: var(--text); background: var(--card); }
+.del-app { display: flex; align-items: center; gap: 12px; margin: 0 0 14px !important; font: 700 17px/1 var(--font); color: var(--head); }
 .del-app img { width: 44px; height: 44px; border-radius: 11px; }
 .del-form, .del-done {
   display: grid; gap: 16px;
   margin: 26px 0 8px; padding: 24px;
-  background: #fff; border: 1px solid #d6dcea; border-radius: 16px;
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px;
 }
 .del-form p, .del-done p, .del-done h2 { margin: 0; }
-.del-warn { padding: 12px 16px; border-radius: 10px; background: #fdeceb; border-left: 4px solid #c62828; color: #7a1d1d; font-weight: 500; }
-.del-field { display: grid; gap: 6px; font: 700 15px/1.3 var(--font); color: #101727; }
+.del-warn { padding: 12px 16px; border-radius: 10px; background: #3a1620; border-left: 4px solid #f0525a; color: #ffc1c4; font-weight: 500; }
+.del-field { display: grid; gap: 6px; font: 700 15px/1.3 var(--font); color: var(--head); }
 .del-field input {
   width: 100%; height: 48px; padding: 0 14px;
-  border: 1px solid #b9c3da; border-radius: 10px; background: #f9fafd;
-  font: 500 17px/1 var(--font); color: #101727;
+  border: 1px solid #3a4f7d; border-radius: 10px; background: var(--page);
+  font: 500 17px/1 var(--font); color: #fff;
 }
-.del-field input:focus { outline: 2px solid var(--base); outline-offset: 0; border-color: transparent; background: #fff; }
+.del-field input:focus { outline: 2px solid var(--link); outline-offset: 0; border-color: transparent; }
 .del-check { display: flex; align-items: flex-start; gap: 10px; font: 500 16px/1.4 var(--font); cursor: pointer; }
-.del-check input { width: 20px; height: 20px; margin: 1px 0 0; flex: none; accent-color: #c62828; cursor: pointer; }
-.del-error { color: #c62828; font-weight: 700; }
+.del-check input { width: 20px; height: 20px; margin: 1px 0 0; flex: none; accent-color: #e5484d; cursor: pointer; }
+.del-error { color: #ff8a8f; font-weight: 700; }
 .del-button {
   height: 52px; border: 0; border-radius: 10px; cursor: pointer;
-  background: #c62828; color: #fff; font: 700 17px/1 var(--font);
+  background: #d93a40; color: #fff; font: 700 17px/1 var(--font);
   transition: background-color .2s, opacity .2s;
 }
-.del-button:hover:not(:disabled) { background: #a51f1f; }
-.del-button:disabled { opacity: .45; cursor: default; }
-.del-done { border-color: #9fd3a8; background: #eef9f0; }
-.del-done h2 { font: 700 21px/1.3 var(--font); color: #14532d; }
+.del-button:hover:not(:disabled) { background: #b92e34; }
+.del-button:disabled { opacity: .4; cursor: default; }
+.del-done { border-color: #2f7a4a; background: #10301f; }
+.del-done h2 { font: 700 21px/1.3 var(--font); color: #a6e9bd; }
 @media (max-width: 600px) {
   .del-form, .del-done { padding: 18px; }
   .legal-nav strong { display: none; }

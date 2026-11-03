@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#1a46a0">
+  <meta name="color-scheme" content="dark">
   <meta name="robots" content="index,follow">
   <title>Powder Box 3D | Delete your account</title>
   <meta name="description" content="Delete your Powder Box 3D account (Last Thylacine): what is deleted and what is kept.">
@@ -81,7 +82,7 @@
       </ul>
 
       <h2 data-t="h_forgot">Forgot your password?</h2>
-      <p data-t="forgot" data-mail>A password can't be recovered: accounts have no email, and without the password we can't confirm the account is yours. Write to {mail} with your nickname and player ID (shown under your nickname in the game), and we'll help if we can confirm it's you.</p>
+      <p data-t="forgot">A password can't be recovered: accounts have no email, and without the password we can't confirm the account is yours.</p>
     </article>
   </main>
 
@@ -92,7 +93,6 @@
   (() => {
     const API = /^(localhost|127\.0\.0\.1)$/.test(location.hostname)
       ? 'http://127.0.0.1:8099' : 'https://api.lastthylacine.com';
-    const MAIL = 'jamalfursov@gmail.com';
 
     const T = {
       en: {
@@ -116,7 +116,7 @@
         k4: 'Ad and analytics data are handled by Appodeal and GameAnalytics. See the privacy policy for details.',
         privacy: 'Privacy policy',
         h_forgot: 'Forgot your password?',
-        forgot: "A password can't be recovered: accounts have no email, and without the password we can't confirm the account is yours. Write to {mail} with your nickname and player ID (shown under your nickname in the game), and we'll help if we can confirm it's you."
+        forgot: "A password can't be recovered: accounts have no email, and without the password we can't confirm the account is yours."
       },
       ru: {
         lang: 'Язык', title: 'Удаление аккаунта',
@@ -139,7 +139,7 @@
         k4: 'Данные рекламы и аналитики обрабатывают Appodeal и GameAnalytics. Подробнее в политике конфиденциальности.',
         privacy: 'Политика конфиденциальности',
         h_forgot: 'Забыл пароль?',
-        forgot: 'Восстановить пароль нельзя: в аккаунте нет почты, и без пароля мы не можем убедиться, что аккаунт твой. Напиши на {mail}, укажи ник и ID игрока (он виден под ником в игре), и мы поможем, если сможем это подтвердить.'
+        forgot: 'Восстановить пароль нельзя: в аккаунте нет почты, и без пароля мы не можем убедиться, что аккаунт твой.'
       },
       es: {
         lang: 'Idioma', title: 'Eliminar tu cuenta',
@@ -162,7 +162,7 @@
         k4: 'Los datos de publicidad y analítica los procesan Appodeal y GameAnalytics. Más detalles en la política de privacidad.',
         privacy: 'Política de privacidad',
         h_forgot: '¿Olvidaste tu contraseña?',
-        forgot: 'La contraseña no se puede recuperar: las cuentas no tienen correo y, sin la contraseña, no podemos confirmar que la cuenta es tuya. Escribe a {mail} con tu apodo y tu ID de jugador (aparece bajo tu apodo en el juego) y te ayudaremos si podemos confirmar que eres tú.'
+        forgot: 'La contraseña no se puede recuperar: las cuentas no tienen correo y, sin la contraseña, no podemos confirmar que la cuenta es tuya.'
       },
       'pt-BR': {
         lang: 'Idioma', title: 'Excluir sua conta',
@@ -185,7 +185,7 @@
         k4: 'Os dados de anúncios e de análise são tratados pela Appodeal e pela GameAnalytics. Veja os detalhes na política de privacidade.',
         privacy: 'Política de privacidade',
         h_forgot: 'Esqueceu a senha?',
-        forgot: 'Não dá para recuperar a senha: as contas não têm e-mail e, sem a senha, não temos como confirmar que a conta é sua. Escreva para {mail} com seu apelido e seu ID de jogador (aparece abaixo do apelido no jogo), e vamos ajudar se conseguirmos confirmar que é você.'
+        forgot: 'Não dá para recuperar a senha: as contas não têm e-mail e, sem a senha, não temos como confirmar que a conta é sua.'
       },
       de: {
         lang: 'Sprache', title: 'Konto löschen',
@@ -208,7 +208,7 @@
         k4: 'Werbe- und Analysedaten verarbeiten Appodeal und GameAnalytics. Details findest du in der Datenschutzerklärung.',
         privacy: 'Datenschutzerklärung',
         h_forgot: 'Passwort vergessen?',
-        forgot: 'Ein Passwort lässt sich nicht wiederherstellen: Konten haben keine E-Mail-Adresse, und ohne Passwort können wir nicht prüfen, ob das Konto dir gehört. Schreib an {mail} mit deinem Nickname und deiner Spieler-ID (sie steht im Spiel unter deinem Nickname). Wir helfen, wenn wir bestätigen können, dass du es bist.'
+        forgot: 'Ein Passwort lässt sich nicht wiederherstellen: Konten haben keine E-Mail-Adresse, und ohne Passwort können wir nicht prüfen, ob das Konto dir gehört.'
       },
       fr: {
         lang: 'Langue', title: 'Supprimer ton compte',
@@ -231,7 +231,7 @@
         k4: 'Les données publicitaires et analytiques sont traitées par Appodeal et GameAnalytics. Plus de détails dans la politique de confidentialité.',
         privacy: 'Politique de confidentialité',
         h_forgot: 'Mot de passe oublié ?',
-        forgot: "Un mot de passe ne peut pas être récupéré : les comptes n'ont pas d'e-mail, et sans le mot de passe nous ne pouvons pas vérifier que le compte est à toi. Écris à {mail} en indiquant ton pseudo et ton ID de joueur (affiché sous ton pseudo dans le jeu) : nous t'aiderons si nous pouvons confirmer que c'est bien toi."
+        forgot: "Un mot de passe ne peut pas être récupéré : les comptes n'ont pas d'e-mail, et sans le mot de passe nous ne pouvons pas vérifier que le compte est à toi."
       },
       tr: {
         lang: 'Dil', title: 'Hesabını sil',
@@ -254,7 +254,7 @@
         k4: 'Reklam ve analiz verilerini Appodeal ve GameAnalytics işler. Ayrıntılar gizlilik politikasında.',
         privacy: 'Gizlilik politikası',
         h_forgot: 'Şifreni mi unuttun?',
-        forgot: "Şifre kurtarılamaz: hesaplarda e-posta yoktur ve şifre olmadan hesabın sana ait olduğunu doğrulayamayız. Kullanıcı adını ve oyuncu ID'ni (oyunda kullanıcı adının altında görünür) yazarak {mail} adresine e-posta gönder; senin olduğunu doğrulayabilirsek yardım ederiz."
+        forgot: "Şifre kurtarılamaz: hesaplarda e-posta yoktur ve şifre olmadan hesabın sana ait olduğunu doğrulayamayız."
       },
       id: {
         lang: 'Bahasa', title: 'Hapus akunmu',
@@ -277,7 +277,7 @@
         k4: 'Data iklan dan analitik diproses oleh Appodeal dan GameAnalytics. Detailnya ada di kebijakan privasi.',
         privacy: 'Kebijakan privasi',
         h_forgot: 'Lupa kata sandi?',
-        forgot: 'Kata sandi tidak bisa dipulihkan: akun tidak punya email, dan tanpa kata sandi kami tidak bisa memastikan akun itu milikmu. Kirim email ke {mail} dengan nama panggilan dan ID pemainmu (terlihat di bawah nama panggilan di game), dan kami akan membantu jika bisa memastikan itu kamu.'
+        forgot: 'Kata sandi tidak bisa dipulihkan: akun tidak punya email, dan tanpa kata sandi kami tidak bisa memastikan akun itu milikmu.'
       },
       it: {
         lang: 'Lingua', title: 'Elimina il tuo account',
@@ -300,7 +300,7 @@
         k4: "I dati pubblicitari e di analisi sono gestiti da Appodeal e GameAnalytics. Maggiori dettagli nell'informativa sulla privacy.",
         privacy: 'Informativa sulla privacy',
         h_forgot: 'Hai dimenticato la password?',
-        forgot: "La password non si può recuperare: gli account non hanno un'email e senza password non possiamo verificare che l'account sia tuo. Scrivi a {mail} indicando nickname e ID giocatore (lo vedi sotto il nickname nel gioco): ti aiuteremo se riusciamo a confermare che sei tu."
+        forgot: "La password non si può recuperare: gli account non hanno un'email e senza password non possiamo verificare che l'account sia tuo."
       },
       pl: {
         lang: 'Język', title: 'Usuń swoje konto',
@@ -323,7 +323,7 @@
         k4: 'Dane reklamowe i analityczne przetwarzają Appodeal i GameAnalytics. Szczegóły w polityce prywatności.',
         privacy: 'Polityka prywatności',
         h_forgot: 'Nie pamiętasz hasła?',
-        forgot: 'Hasła nie da się odzyskać: konta nie mają adresu e-mail, a bez hasła nie możemy potwierdzić, że konto jest twoje. Napisz na {mail}, podając nick i ID gracza (widać je pod nickiem w grze). Pomożemy, jeśli uda się potwierdzić, że to ty.'
+        forgot: 'Hasła nie da się odzyskać: konta nie mają adresu e-mail, a bez hasła nie możemy potwierdzić, że konto jest twoje.'
       }
     };
 
@@ -357,16 +357,7 @@
       document.title = 'Powder Box 3D | ' + text('title');
       $('lang').setAttribute('aria-label', text('lang'));
       for (const el of document.querySelectorAll('[data-t]')) {
-        const s = text(el.dataset.t);
-        if (el.hasAttribute('data-mail')) {
-          const [a, b] = s.split('{mail}');
-          const link = document.createElement('a');
-          link.href = 'mailto:' + MAIL;
-          link.textContent = MAIL;
-          el.replaceChildren(a, link, b ?? '');
-        } else if (!(el === go && busy)) {
-          el.textContent = s;
-        }
+        if (!(el === go && busy)) el.textContent = text(el.dataset.t);
       }
       if (busy) go.textContent = text('wait');
       if (err.dataset.key) err.textContent = text(err.dataset.key, err.dataset.arg);
