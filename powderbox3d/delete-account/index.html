@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1a46a0">
+  <meta name="robots" content="index,follow">
+  <title>Powder Box 3D | Delete your account</title>
+  <meta name="description" content="Delete your Powder Box 3D account (Last Thylacine): what is deleted and what is kept.">
+  <link rel="canonical" href="https://lastthylacine.com/powderbox3d/delete-account/">
+  <link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body class="legal-page">
+  <main class="legal-wrap">
+    <nav class="legal-nav" aria-label="Last Thylacine">
+      <a href="../../index.html">
+        <img src="../../assets/logo.svg" alt="" width="447" height="384">
+        <strong>Last Thylacine</strong>
+      </a>
+      <label class="lang">
+        <span class="sr" data-t="lang">Language</span>
+        <select id="lang" aria-label="Language">
+          <option value="en">English</option>
+          <option value="ru">Русский</option>
+          <option value="es">Español</option>
+          <option value="pt-BR">Português (Brasil)</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+          <option value="tr">Türkçe</option>
+          <option value="id">Bahasa Indonesia</option>
+          <option value="it">Italiano</option>
+          <option value="pl">Polski</option>
+        </select>
+      </label>
+    </nav>
+
+    <article class="legal-article">
+      <p class="del-app"><img src="../../assets/pb-icon.png" alt="" width="144" height="144">Powder Box 3D</p>
+      <h1 data-t="title">Delete your account</h1>
+      <p data-t="intro">Here you can delete your account in Powder Box 3D by Last Thylacine. Enter your nickname and password, and the account is deleted right away.</p>
+      <p data-t="ingame">You can also do this in the game: main menu → your nickname → “Delete account”.</p>
+
+      <form class="del-form" id="form" novalidate>
+        <p class="del-warn" data-t="warning">The account will be deleted forever, along with all the maps you have published. This can't be undone.</p>
+        <label class="del-field">
+          <span data-t="nick">Nickname</span>
+          <input id="nick" name="nick" type="text" autocomplete="username" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="64" required>
+        </label>
+        <label class="del-field">
+          <span data-t="password">Password</span>
+          <input id="password" name="password" type="password" autocomplete="current-password" maxlength="64" required>
+        </label>
+        <label class="del-check">
+          <input id="sure" type="checkbox">
+          <span data-t="confirm">I understand that the account can't be restored</span>
+        </label>
+        <p class="del-error" id="error" role="alert" hidden></p>
+        <button class="del-button" id="go" type="submit" disabled data-t="button">Delete forever</button>
+        <noscript><p class="del-error">JavaScript is needed to delete the account here. You can also delete it in the game.</p></noscript>
+      </form>
+
+      <div class="del-done" id="done" role="status" hidden>
+        <h2 id="done-title"></h2>
+        <p data-t="done_text">You're signed out on all devices. Your saves and worlds on the phone are still there.</p>
+      </div>
+
+      <h2 data-t="h_deleted">What is deleted</h2>
+      <ul>
+        <li data-t="d1">Your nickname and password</li>
+        <li data-t="d2">Sign-ins on all your devices</li>
+        <li data-t="d3">Maps you have published</li>
+      </ul>
+
+      <h2 data-t="h_kept">What is kept, and for how long</h2>
+      <ul>
+        <li data-t="k1">For 30 days nobody can take your nickname, so no one can pose as you. It is no longer linked to you, and after that anyone can take it.</li>
+        <li data-t="k2">Backup copies of the server database are kept for up to 90 days, then deleted automatically.</li>
+        <li data-t="k3">Saves, worlds and settings are stored on your device and are not deleted. To remove them, uninstall the game.</li>
+        <li><span data-t="k4">Ad and analytics data are handled by Appodeal and GameAnalytics. See the privacy policy for details.</span> <a href="../android/" data-t="privacy">Privacy policy</a></li>
+      </ul>
+
+      <h2 data-t="h_forgot">Forgot your password?</h2>
+      <p data-t="forgot" data-mail>A password can't be recovered: accounts have no email, and without the password we can't confirm the account is yours. Write to {mail} with your nickname and player ID (shown under your nickname in the game), and we'll help if we can confirm it's you.</p>
+    </article>
+  </main>
+
+  <script>
+  // Account deletion for Google Play: POST /v1/delete on the accounts API with nick + password.
+  // The API lets only https://lastthylacine.com call it from a browser (CORS), so the copy on
+  // github.io shows the page but cannot delete. Texts: 10 languages of the game.
+  (() => {
+    const API = /^(localhost|127\.0\.0\.1)$/.test(location.hostname)
+      ? 'http://127.0.0.1:8099' : 'https://api.lastthylacine.com';
+    const MAIL = 'jamalfursov@gmail.com';
+
+    const T = {
+      en: {
+        lang: 'Language', title: 'Delete your account',
+        intro: 'Here you can delete your account in Powder Box 3D by Last Thylacine. Enter your nickname and password, and the account is deleted right away.',
+        ingame: 'You can also do this in the game: main menu → your nickname → “Delete account”.',
+        warning: "The account will be deleted forever, along with all the maps you have published. This can't be undone.",
+        nick: 'Nickname', password: 'Password',
+        confirm: "I understand that the account can't be restored",
+        button: 'Delete forever', wait: 'Deleting…',
+        done_title: 'Account {0} deleted',
+        done_text: "You're signed out on all devices. Your saves and worlds on the phone are still there.",
+        empty: 'Fill in all the fields', bad_credentials: 'Wrong nickname or password',
+        rate_limited: 'Too many attempts. Try again in {0} min',
+        network: 'No connection to the server. Check your internet', server_error: 'Server error. Try again later',
+        h_deleted: 'What is deleted', d1: 'Your nickname and password', d2: 'Sign-ins on all your devices', d3: 'Maps you have published',
+        h_kept: 'What is kept, and for how long',
+        k1: 'For 30 days nobody can take your nickname, so no one can pose as you. It is no longer linked to you, and after that anyone can take it.',
+        k2: 'Backup copies of the server database are kept for up to 90 days, then deleted automatically.',
+        k3: 'Saves, worlds and settings are stored on your device and are not deleted. To remove them, uninstall the game.',
+        k4: 'Ad and analytics data are handled by Appodeal and GameAnalytics. See the privacy policy for details.',
+        privacy: 'Privacy policy',
+        h_forgot: 'Forgot your password?',
+        forgot: "A password can't be recovered: accounts have no email, and without the password we can't confirm the account is yours. Write to {mail} with your nickname and player ID (shown under your nickname in the game), and we'll help if we can confirm it's you."
+      },
+      ru: {
+        lang: 'Язык', title: 'Удаление аккаунта',
+        intro: 'Здесь можно удалить свой аккаунт в игре Powder Box 3D от Last Thylacine. Введи ник и пароль, и аккаунт удалится сразу.',
+        ingame: 'То же можно сделать в самой игре: главное меню → твой ник → «Удалить аккаунт».',
+        warning: 'Аккаунт удалится навсегда вместе со всеми картами, которые ты опубликовал. Отменить это нельзя.',
+        nick: 'Никнейм', password: 'Пароль',
+        confirm: 'Я понимаю, что восстановить аккаунт будет нельзя',
+        button: 'Удалить навсегда', wait: 'Удаляем…',
+        done_title: 'Аккаунт {0} удалён',
+        done_text: 'Ты вышел из него на всех устройствах. Сохранения и миры на телефоне остались на месте.',
+        empty: 'Заполни все поля', bad_credentials: 'Неверный ник или пароль',
+        rate_limited: 'Слишком много попыток. Попробуй через {0} мин',
+        network: 'Нет связи с сервером. Проверь интернет', server_error: 'Ошибка сервера. Попробуй позже',
+        h_deleted: 'Что удаляется', d1: 'Ник и пароль', d2: 'Входы на всех твоих устройствах', d3: 'Карты, которые ты опубликовал',
+        h_kept: 'Что остаётся и на сколько',
+        k1: 'Ник 30 дней никто не сможет занять, чтобы под ним не выдали себя за тебя. С тобой он больше не связан, а потом его сможет взять кто угодно.',
+        k2: 'Резервные копии базы сервера хранятся до 90 дней, затем удаляются сами.',
+        k3: 'Сохранения, миры и настройки лежат на твоём устройстве и не удаляются. Чтобы стереть их, удали игру.',
+        k4: 'Данные рекламы и аналитики обрабатывают Appodeal и GameAnalytics. Подробнее в политике конфиденциальности.',
+        privacy: 'Политика конфиденциальности',
+        h_forgot: 'Забыл пароль?',
+        forgot: 'Восстановить пароль нельзя: в аккаунте нет почты, и без пароля мы не можем убедиться, что аккаунт твой. Напиши на {mail}, укажи ник и ID игрока (он виден под ником в игре), и мы поможем, если сможем это подтвердить.'
+      },
+      es: {
+        lang: 'Idioma', title: 'Eliminar tu cuenta',
+        intro: 'Aquí puedes eliminar tu cuenta de Powder Box 3D de Last Thylacine. Escribe tu apodo y tu contraseña, y la cuenta se eliminará al instante.',
+        ingame: 'También puedes hacerlo en el juego: menú principal → tu apodo → «Eliminar cuenta».',
+        warning: 'La cuenta se eliminará para siempre junto con todos los mapas que hayas publicado. No se puede deshacer.',
+        nick: 'Apodo', password: 'Contraseña',
+        confirm: 'Entiendo que la cuenta no se podrá recuperar',
+        button: 'Eliminar para siempre', wait: 'Eliminando…',
+        done_title: 'Cuenta {0} eliminada',
+        done_text: 'Se ha cerrado la sesión en todos tus dispositivos. Tus partidas y mundos del teléfono siguen ahí.',
+        empty: 'Rellena todos los campos', bad_credentials: 'Apodo o contraseña incorrectos',
+        rate_limited: 'Demasiados intentos. Prueba de nuevo en {0} min',
+        network: 'Sin conexión con el servidor. Revisa tu internet', server_error: 'Error del servidor. Inténtalo más tarde',
+        h_deleted: 'Qué se elimina', d1: 'Tu apodo y tu contraseña', d2: 'Las sesiones iniciadas en todos tus dispositivos', d3: 'Los mapas que hayas publicado',
+        h_kept: 'Qué se conserva y durante cuánto tiempo',
+        k1: 'Durante 30 días nadie podrá usar tu apodo, para que nadie se haga pasar por ti. Ya no está vinculado a ti, y después cualquiera podrá usarlo.',
+        k2: 'Las copias de seguridad de la base de datos del servidor se guardan hasta 90 días y luego se eliminan solas.',
+        k3: 'Las partidas, los mundos y los ajustes están en tu dispositivo y no se eliminan. Para borrarlos, desinstala el juego.',
+        k4: 'Los datos de publicidad y analítica los procesan Appodeal y GameAnalytics. Más detalles en la política de privacidad.',
+        privacy: 'Política de privacidad',
+        h_forgot: '¿Olvidaste tu contraseña?',
+        forgot: 'La contraseña no se puede recuperar: las cuentas no tienen correo y, sin la contraseña, no podemos confirmar que la cuenta es tuya. Escribe a {mail} con tu apodo y tu ID de jugador (aparece bajo tu apodo en el juego) y te ayudaremos si podemos confirmar que eres tú.'
+      },
+      'pt-BR': {
+        lang: 'Idioma', title: 'Excluir sua conta',
+        intro: 'Aqui você pode excluir sua conta do Powder Box 3D, da Last Thylacine. Digite seu apelido e sua senha, e a conta será excluída na hora.',
+        ingame: 'Também dá para fazer isso no jogo: menu principal → seu apelido → “Excluir conta”.',
+        warning: 'A conta será excluída para sempre, junto com todos os mapas que você publicou. Não dá para desfazer.',
+        nick: 'Apelido', password: 'Senha',
+        confirm: 'Entendo que não será possível recuperar a conta',
+        button: 'Excluir para sempre', wait: 'Excluindo…',
+        done_title: 'Conta {0} excluída',
+        done_text: 'Você saiu da conta em todos os dispositivos. Seus jogos salvos e mundos no celular continuam lá.',
+        empty: 'Preencha todos os campos', bad_credentials: 'Apelido ou senha incorretos',
+        rate_limited: 'Tentativas demais. Tente de novo em {0} min',
+        network: 'Sem conexão com o servidor. Verifique sua internet', server_error: 'Erro no servidor. Tente mais tarde',
+        h_deleted: 'O que é excluído', d1: 'Seu apelido e sua senha', d2: 'Os logins em todos os seus dispositivos', d3: 'Os mapas que você publicou',
+        h_kept: 'O que fica guardado e por quanto tempo',
+        k1: 'Por 30 dias ninguém poderá usar seu apelido, para que ninguém se passe por você. Ele não fica mais ligado a você e, depois disso, qualquer pessoa poderá usá-lo.',
+        k2: 'As cópias de segurança do banco de dados do servidor ficam guardadas por até 90 dias e depois são apagadas automaticamente.',
+        k3: 'Jogos salvos, mundos e configurações ficam no seu dispositivo e não são excluídos. Para apagá-los, desinstale o jogo.',
+        k4: 'Os dados de anúncios e de análise são tratados pela Appodeal e pela GameAnalytics. Veja os detalhes na política de privacidade.',
+        privacy: 'Política de privacidade',
+        h_forgot: 'Esqueceu a senha?',
+        forgot: 'Não dá para recuperar a senha: as contas não têm e-mail e, sem a senha, não temos como confirmar que a conta é sua. Escreva para {mail} com seu apelido e seu ID de jogador (aparece abaixo do apelido no jogo), e vamos ajudar se conseguirmos confirmar que é você.'
+      },
+      de: {
+        lang: 'Sprache', title: 'Konto löschen',
+        intro: 'Hier kannst du dein Konto in Powder Box 3D von Last Thylacine löschen. Gib deinen Nickname und dein Passwort ein, dann wird das Konto sofort gelöscht.',
+        ingame: 'Das geht auch im Spiel: Hauptmenü → dein Nickname → „Konto löschen“.',
+        warning: 'Das Konto wird endgültig gelöscht, zusammen mit allen Karten, die du veröffentlicht hast. Das lässt sich nicht rückgängig machen.',
+        nick: 'Nickname', password: 'Passwort',
+        confirm: 'Mir ist klar, dass sich das Konto nicht wiederherstellen lässt',
+        button: 'Endgültig löschen', wait: 'Wird gelöscht…',
+        done_title: 'Konto {0} gelöscht',
+        done_text: 'Du bist auf allen Geräten abgemeldet. Deine Spielstände und Welten auf dem Handy bleiben erhalten.',
+        empty: 'Füll alle Felder aus', bad_credentials: 'Falscher Nickname oder falsches Passwort',
+        rate_limited: 'Zu viele Versuche. Versuch es in {0} Min. erneut',
+        network: 'Keine Verbindung zum Server. Prüf dein Internet', server_error: 'Serverfehler. Versuch es später noch mal',
+        h_deleted: 'Was gelöscht wird', d1: 'Dein Nickname und dein Passwort', d2: 'Die Anmeldungen auf allen deinen Geräten', d3: 'Karten, die du veröffentlicht hast',
+        h_kept: 'Was bleibt und wie lange',
+        k1: '30 Tage lang kann niemand deinen Nickname nehmen, damit sich keiner als du ausgibt. Er ist nicht mehr mit dir verbunden, danach kann ihn jeder nehmen.',
+        k2: 'Sicherungskopien der Serverdatenbank werden bis zu 90 Tage aufbewahrt und dann automatisch gelöscht.',
+        k3: 'Spielstände, Welten und Einstellungen liegen auf deinem Gerät und werden nicht gelöscht. Um sie zu entfernen, deinstalliere das Spiel.',
+        k4: 'Werbe- und Analysedaten verarbeiten Appodeal und GameAnalytics. Details findest du in der Datenschutzerklärung.',
+        privacy: 'Datenschutzerklärung',
+        h_forgot: 'Passwort vergessen?',
+        forgot: 'Ein Passwort lässt sich nicht wiederherstellen: Konten haben keine E-Mail-Adresse, und ohne Passwort können wir nicht prüfen, ob das Konto dir gehört. Schreib an {mail} mit deinem Nickname und deiner Spieler-ID (sie steht im Spiel unter deinem Nickname). Wir helfen, wenn wir bestätigen können, dass du es bist.'
+      },
+      fr: {
+        lang: 'Langue', title: 'Supprimer ton compte',
+        intro: 'Ici, tu peux supprimer ton compte Powder Box 3D de Last Thylacine. Saisis ton pseudo et ton mot de passe : le compte sera supprimé immédiatement.',
+        ingame: 'Tu peux aussi le faire dans le jeu : menu principal → ton pseudo → « Supprimer le compte ».',
+        warning: "Le compte sera supprimé définitivement, avec toutes les cartes que tu as publiées. C'est irréversible.",
+        nick: 'Pseudo', password: 'Mot de passe',
+        confirm: 'Je comprends que le compte ne pourra pas être restauré',
+        button: 'Supprimer définitivement', wait: 'Suppression…',
+        done_title: 'Compte {0} supprimé',
+        done_text: 'Tu es déconnecté sur tous tes appareils. Tes sauvegardes et tes mondes sur le téléphone sont toujours là.',
+        empty: 'Remplis tous les champs', bad_credentials: 'Pseudo ou mot de passe incorrect',
+        rate_limited: 'Trop de tentatives. Réessaie dans {0} min',
+        network: 'Pas de connexion au serveur. Vérifie ta connexion internet', server_error: 'Erreur du serveur. Réessaie plus tard',
+        h_deleted: 'Ce qui est supprimé', d1: 'Ton pseudo et ton mot de passe', d2: 'Les connexions sur tous tes appareils', d3: 'Les cartes que tu as publiées',
+        h_kept: 'Ce qui est conservé, et combien de temps',
+        k1: "Pendant 30 jours, personne ne pourra prendre ton pseudo, pour que personne ne se fasse passer pour toi. Il n'est plus lié à toi, et ensuite n'importe qui pourra le prendre.",
+        k2: "Les copies de sauvegarde de la base de données du serveur sont conservées jusqu'à 90 jours, puis supprimées automatiquement.",
+        k3: 'Les sauvegardes, les mondes et les réglages sont stockés sur ton appareil et ne sont pas supprimés. Pour les effacer, désinstalle le jeu.',
+        k4: 'Les données publicitaires et analytiques sont traitées par Appodeal et GameAnalytics. Plus de détails dans la politique de confidentialité.',
+        privacy: 'Politique de confidentialité',
+        h_forgot: 'Mot de passe oublié ?',
+        forgot: "Un mot de passe ne peut pas être récupéré : les comptes n'ont pas d'e-mail, et sans le mot de passe nous ne pouvons pas vérifier que le compte est à toi. Écris à {mail} en indiquant ton pseudo et ton ID de joueur (affiché sous ton pseudo dans le jeu) : nous t'aiderons si nous pouvons confirmer que c'est bien toi."
+      },
+      tr: {
+        lang: 'Dil', title: 'Hesabını sil',
+        intro: "Buradan Last Thylacine'in Powder Box 3D oyunundaki hesabını silebilirsin. Kullanıcı adını ve şifreni gir, hesap hemen silinir.",
+        ingame: 'Bunu oyunun içinden de yapabilirsin: ana menü → kullanıcı adın → “Hesabı sil”.',
+        warning: 'Hesap, yayımladığın tüm haritalarla birlikte kalıcı olarak silinecek. Bu geri alınamaz.',
+        nick: 'Kullanıcı adı', password: 'Şifre',
+        confirm: 'Hesabın geri getirilemeyeceğini anlıyorum',
+        button: 'Kalıcı olarak sil', wait: 'Siliniyor…',
+        done_title: '{0} hesabı silindi',
+        done_text: 'Tüm cihazlarında oturumun kapatıldı. Telefondaki kayıtların ve dünyaların yerinde duruyor.',
+        empty: 'Tüm alanları doldur', bad_credentials: 'Kullanıcı adı veya şifre yanlış',
+        rate_limited: 'Çok fazla deneme. {0} dk sonra tekrar dene',
+        network: 'Sunucuya bağlanılamıyor. İnternetini kontrol et', server_error: 'Sunucu hatası. Daha sonra tekrar dene',
+        h_deleted: 'Neler silinir', d1: 'Kullanıcı adın ve şifren', d2: 'Tüm cihazlarındaki oturumlar', d3: 'Yayımladığın haritalar',
+        h_kept: 'Neler, ne kadar süre saklanır',
+        k1: '30 gün boyunca kimse kullanıcı adını alamaz, böylece kimse kendini sen gibi tanıtamaz. Bu ad artık seninle bağlantılı değildir ve sürenin sonunda herkes alabilir.',
+        k2: 'Sunucu veritabanının yedek kopyaları en fazla 90 gün saklanır, ardından kendiliğinden silinir.',
+        k3: 'Kayıtlar, dünyalar ve ayarlar cihazında durur ve silinmez. Onları silmek için oyunu kaldır.',
+        k4: 'Reklam ve analiz verilerini Appodeal ve GameAnalytics işler. Ayrıntılar gizlilik politikasında.',
+        privacy: 'Gizlilik politikası',
+        h_forgot: 'Şifreni mi unuttun?',
+        forgot: "Şifre kurtarılamaz: hesaplarda e-posta yoktur ve şifre olmadan hesabın sana ait olduğunu doğrulayamayız. Kullanıcı adını ve oyuncu ID'ni (oyunda kullanıcı adının altında görünür) yazarak {mail} adresine e-posta gönder; senin olduğunu doğrulayabilirsek yardım ederiz."
+      },
+      id: {
+        lang: 'Bahasa', title: 'Hapus akunmu',
+        intro: 'Di sini kamu bisa menghapus akunmu di Powder Box 3D dari Last Thylacine. Masukkan nama panggilan dan kata sandi, lalu akun langsung dihapus.',
+        ingame: 'Kamu juga bisa melakukannya di dalam game: menu utama → nama panggilanmu → “Hapus akun”.',
+        warning: 'Akun akan dihapus selamanya bersama semua peta yang sudah kamu terbitkan. Ini tidak bisa dibatalkan.',
+        nick: 'Nama panggilan', password: 'Kata sandi',
+        confirm: 'Aku mengerti bahwa akun tidak bisa dipulihkan',
+        button: 'Hapus selamanya', wait: 'Menghapus…',
+        done_title: 'Akun {0} dihapus',
+        done_text: 'Kamu sudah keluar di semua perangkat. Simpanan dan dunia di ponselmu tetap ada.',
+        empty: 'Isi semua kolom', bad_credentials: 'Nama panggilan atau kata sandi salah',
+        rate_limited: 'Terlalu banyak percobaan. Coba lagi dalam {0} menit',
+        network: 'Tidak ada koneksi ke server. Periksa internetmu', server_error: 'Kesalahan server. Coba lagi nanti',
+        h_deleted: 'Yang dihapus', d1: 'Nama panggilan dan kata sandimu', d2: 'Sesi masuk di semua perangkatmu', d3: 'Peta yang sudah kamu terbitkan',
+        h_kept: 'Yang disimpan dan berapa lama',
+        k1: 'Selama 30 hari tidak ada yang bisa memakai nama panggilanmu, supaya tidak ada yang menyamar sebagai kamu. Nama itu tidak lagi terhubung denganmu, dan setelah itu siapa pun bisa memakainya.',
+        k2: 'Salinan cadangan basis data server disimpan paling lama 90 hari, lalu dihapus otomatis.',
+        k3: 'Simpanan, dunia, dan pengaturan ada di perangkatmu dan tidak dihapus. Untuk menghapusnya, copot pemasangan game.',
+        k4: 'Data iklan dan analitik diproses oleh Appodeal dan GameAnalytics. Detailnya ada di kebijakan privasi.',
+        privacy: 'Kebijakan privasi',
+        h_forgot: 'Lupa kata sandi?',
+        forgot: 'Kata sandi tidak bisa dipulihkan: akun tidak punya email, dan tanpa kata sandi kami tidak bisa memastikan akun itu milikmu. Kirim email ke {mail} dengan nama panggilan dan ID pemainmu (terlihat di bawah nama panggilan di game), dan kami akan membantu jika bisa memastikan itu kamu.'
+      },
+      it: {
+        lang: 'Lingua', title: 'Elimina il tuo account',
+        intro: "Qui puoi eliminare il tuo account di Powder Box 3D di Last Thylacine. Inserisci nickname e password e l'account verrà eliminato subito.",
+        ingame: 'Puoi farlo anche nel gioco: menu principale → il tuo nickname → «Elimina account».',
+        warning: "L'account verrà eliminato per sempre insieme a tutte le mappe che hai pubblicato. Non si può annullare.",
+        nick: 'Nickname', password: 'Password',
+        confirm: "Ho capito che l'account non si potrà recuperare",
+        button: 'Elimina per sempre', wait: 'Eliminazione…',
+        done_title: 'Account {0} eliminato',
+        done_text: "Sei uscito dall'account su tutti i dispositivi. I salvataggi e i mondi sul telefono restano dove sono.",
+        empty: 'Compila tutti i campi', bad_credentials: 'Nickname o password errati',
+        rate_limited: 'Troppi tentativi. Riprova tra {0} min',
+        network: 'Nessuna connessione al server. Controlla internet', server_error: 'Errore del server. Riprova più tardi',
+        h_deleted: 'Cosa viene eliminato', d1: 'Il tuo nickname e la tua password', d2: 'Gli accessi su tutti i tuoi dispositivi', d3: 'Le mappe che hai pubblicato',
+        h_kept: 'Cosa resta e per quanto',
+        k1: 'Per 30 giorni nessuno potrà prendere il tuo nickname, così nessuno potrà spacciarsi per te. Non è più collegato a te, e poi chiunque potrà prenderlo.',
+        k2: 'Le copie di backup del database del server vengono conservate fino a 90 giorni, poi eliminate automaticamente.',
+        k3: 'Salvataggi, mondi e impostazioni sono sul tuo dispositivo e non vengono eliminati. Per cancellarli, disinstalla il gioco.',
+        k4: "I dati pubblicitari e di analisi sono gestiti da Appodeal e GameAnalytics. Maggiori dettagli nell'informativa sulla privacy.",
+        privacy: 'Informativa sulla privacy',
+        h_forgot: 'Hai dimenticato la password?',
+        forgot: "La password non si può recuperare: gli account non hanno un'email e senza password non possiamo verificare che l'account sia tuo. Scrivi a {mail} indicando nickname e ID giocatore (lo vedi sotto il nickname nel gioco): ti aiuteremo se riusciamo a confermare che sei tu."
+      },
+      pl: {
+        lang: 'Język', title: 'Usuń swoje konto',
+        intro: 'Tutaj możesz usunąć swoje konto w Powder Box 3D od Last Thylacine. Wpisz nick i hasło, a konto zostanie od razu usunięte.',
+        ingame: 'Możesz to też zrobić w grze: menu główne → twój nick → „Usuń konto”.',
+        warning: 'Konto zostanie usunięte na zawsze razem ze wszystkimi opublikowanymi przez ciebie mapami. Tego nie da się cofnąć.',
+        nick: 'Nick', password: 'Hasło',
+        confirm: 'Rozumiem, że konta nie da się przywrócić',
+        button: 'Usuń na zawsze', wait: 'Usuwanie…',
+        done_title: 'Konto {0} usunięte',
+        done_text: 'Wylogowano cię na wszystkich urządzeniach. Zapisy i światy na telefonie zostają na miejscu.',
+        empty: 'Wypełnij wszystkie pola', bad_credentials: 'Zły nick lub hasło',
+        rate_limited: 'Zbyt wiele prób. Spróbuj za {0} min',
+        network: 'Brak połączenia z serwerem. Sprawdź internet', server_error: 'Błąd serwera. Spróbuj później',
+        h_deleted: 'Co zostaje usunięte', d1: 'Twój nick i hasło', d2: 'Logowania na wszystkich twoich urządzeniach', d3: 'Opublikowane przez ciebie mapy',
+        h_kept: 'Co zostaje i jak długo',
+        k1: 'Przez 30 dni nikt nie zajmie twojego nicku, żeby nikt nie podszywał się pod ciebie. Nick nie jest już z tobą powiązany, a potem każdy może go wziąć.',
+        k2: 'Kopie zapasowe bazy danych serwera są przechowywane do 90 dni, a potem usuwane automatycznie.',
+        k3: 'Zapisy, światy i ustawienia są na twoim urządzeniu i nie zostają usunięte. Aby je skasować, odinstaluj grę.',
+        k4: 'Dane reklamowe i analityczne przetwarzają Appodeal i GameAnalytics. Szczegóły w polityce prywatności.',
+        privacy: 'Polityka prywatności',
+        h_forgot: 'Nie pamiętasz hasła?',
+        forgot: 'Hasła nie da się odzyskać: konta nie mają adresu e-mail, a bez hasła nie możemy potwierdzić, że konto jest twoje. Napisz na {mail}, podając nick i ID gracza (widać je pod nickiem w grze). Pomożemy, jeśli uda się potwierdzić, że to ty.'
+      }
+    };
+
+    const $ = id => document.getElementById(id);
+    const form = $('form'), nick = $('nick'), pw = $('password'), sure = $('sure'), go = $('go'), err = $('error'), done = $('done');
+    let lang = 'en', busy = false;
+
+    // French: narrow no-break spaces before : ; ! ? and inside « », like the game's merge script.
+    const text = (key, ...args) => {
+      let s = (T[lang][key] ?? T.en[key]).replace(/\{(\d)\}/g, (_, i) => args[i] ?? '');
+      if (lang === 'fr') s = s.replace(/ ([:;!?»])/g, ' $1').replace(/« /g, '« ');
+      return s;
+    };
+
+    const pick = () => {
+      const q = new URLSearchParams(location.search).get('lang');
+      if (q && T[q]) return q;
+      for (const l of navigator.languages || [navigator.language || 'en']) {
+        const low = l.toLowerCase();
+        if (low.startsWith('pt')) return 'pt-BR';
+        const base = low.split('-')[0];
+        if (T[base]) return base;
+      }
+      return 'en';
+    };
+
+    const apply = l => {
+      lang = l;
+      document.documentElement.lang = l;
+      $('lang').value = l;
+      document.title = 'Powder Box 3D | ' + text('title');
+      $('lang').setAttribute('aria-label', text('lang'));
+      for (const el of document.querySelectorAll('[data-t]')) {
+        const s = text(el.dataset.t);
+        if (el.hasAttribute('data-mail')) {
+          const [a, b] = s.split('{mail}');
+          const link = document.createElement('a');
+          link.href = 'mailto:' + MAIL;
+          link.textContent = MAIL;
+          el.replaceChildren(a, link, b ?? '');
+        } else if (!(el === go && busy)) {
+          el.textContent = s;
+        }
+      }
+      if (busy) go.textContent = text('wait');
+      if (err.dataset.key) err.textContent = text(err.dataset.key, err.dataset.arg);
+      if (done.dataset.nick) $('done-title').textContent = text('done_title', done.dataset.nick);
+    };
+
+    const showError = (key, arg) => {
+      err.dataset.key = key;
+      err.dataset.arg = arg ?? '';
+      err.textContent = text(key, arg);
+      err.hidden = false;
+    };
+
+    const refresh = () => { go.disabled = busy || !sure.checked; };
+    sure.addEventListener('change', refresh);
+
+    $('lang').addEventListener('change', e => {
+      apply(e.target.value);
+      const u = new URL(location.href);
+      u.searchParams.set('lang', lang);
+      history.replaceState(null, '', u);
+    });
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (busy || !sure.checked) return;
+      const n = nick.value.trim();
+      if (!n || !pw.value) { showError('empty'); return; }
+      err.hidden = true;
+      delete err.dataset.key;
+      busy = true;
+      go.textContent = text('wait');
+      refresh();
+      try {
+        const r = await fetch(API + '/v1/delete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nick: n, password: pw.value }),
+          credentials: 'omit',
+          cache: 'no-store'
+        });
+        if (r.status === 204) {
+          pw.value = '';
+          form.hidden = true;
+          done.dataset.nick = n;
+          $('done-title').textContent = text('done_title', n);
+          done.hidden = false;
+          done.scrollIntoView({ block: 'center', behavior: 'smooth' });
+          return;
+        }
+        let code = 'server_error', wait = 60;
+        try { const j = await r.json(); code = j.error; wait = j.retry_after || wait; } catch {}
+        if (code === 'bad_credentials') showError('bad_credentials');
+        else if (code === 'rate_limited') showError('rate_limited', Math.max(1, Math.ceil(wait / 60)));
+        else if (code === 'bad_request') showError('empty');
+        else showError('server_error');
+      } catch {
+        showError('network');
+      } finally {
+        busy = false;
+        go.textContent = text('button');
+        refresh();
+      }
+    });
+
+    apply(pick());
+    refresh();
+  })();
+  </script>
+</body>
+</html>
