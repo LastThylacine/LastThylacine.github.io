@@ -29,7 +29,7 @@
     ],
     "Off": [],
     "CheckOrigin": true,
-    "UpdateWaitDays": 2,
+    "UpdateWaitDays": 0,
     "UpdateLaterDays": 3,
     "MinVersion": "",
     "YouTube": "https://www.youtube.com/@last_thylacine",
