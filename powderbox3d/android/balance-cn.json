@@ -27,7 +27,7 @@
     "Scenarios": [
         { "Id": "Dam", "Videos": 1 }
     ],
-    "Off": [],
+    "Off": ["menu_to_game", "exit_to_menu", "world_reset", "load_in_game"],
     "CheckOrigin": true,
     "UpdateWaitDays": 1,
     "UpdateLaterDays": 2,
