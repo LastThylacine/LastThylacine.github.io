@@ -21,24 +21,24 @@
     ],
     "LockedBlueprints": ["house", "barrel", "oil-tank", "village", "laboratory", "dam", "volcano", "castle"],
     "Materials": [
-        { "Id": "Clone", "Videos": 2 },
-        { "Id": "Void", "Videos": 2 },
-        { "Id": "Virus", "Videos": 2 },
-        { "Id": "PowerLightning", "Videos": 1 },
-        { "Id": "Thermite", "Videos": 1 }
+        { "Id": "Clone", "Videos": 99 },
+        { "Id": "Void", "Videos": 99 },
+        { "Id": "Virus", "Videos": 99 },
+        { "Id": "PowerLightning", "Videos": 99 },
+        { "Id": "Thermite", "Videos": 99 }
     ],
     "Blueprints": [
-        { "Id": "village", "Videos": 1 },
-        { "Id": "laboratory", "Videos": 1 },
-        { "Id": "volcano", "Videos": 1 },
-        { "Id": "castle", "Videos": 1 }
+        { "Id": "village", "Videos": 99 },
+        { "Id": "laboratory", "Videos": 99 },
+        { "Id": "volcano", "Videos": 99 },
+        { "Id": "castle", "Videos": 99 }
     ],
     "Scenarios": [
-        { "Id": "Volcano", "Videos": 1 },
-        { "Id": "Dam", "Videos": 1 },
-        { "Id": "LavaFields", "Videos": 1 },
-        { "Id": "Earth", "Videos": 1 },
-        { "Id": "Starter", "Videos": 1 }
+        { "Id": "Volcano", "Videos": 99 },
+        { "Id": "Dam", "Videos": 99 },
+        { "Id": "LavaFields", "Videos": 99 },
+        { "Id": "Earth", "Videos": 99 },
+        { "Id": "Starter", "Videos": 99 }
     ],
     "Off": ["menu_to_game", "exit_to_menu", "world_reset", "load_in_game"],
     "CheckOrigin": true,
