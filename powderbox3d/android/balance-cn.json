@@ -42,6 +42,8 @@
     ],
     "Off": ["menu_to_game", "exit_to_menu", "world_reset", "load_in_game"],
     "CheckOrigin": true,
+    "CheckContainer": true,
+    "StrictRewards": true,
     "UpdateWaitDays": 1,
     "UpdateLaterDays": 2,
     "MinVersion": "99.0.0",
