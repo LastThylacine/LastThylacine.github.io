@@ -17,7 +17,7 @@
         "Tnt", "Nitro", "Methane", "Salt", "SaltWater", "Acid", "Metal", "MoltenMetal", "Rust", "Hydrogen", "Thermite",
         "BurningThermite", "Ash", "Seed", "Plant", "Flower", "Virus", "Clone", "Void", "Fuse", "BurningFuse", "Plasma",
         "Meteor", "Diamond", "Brick", "PowerHeat", "PowerCold", "PowerMeteor", "PowerLightning", "PowerRain", "Magma",
-        "Fireball"
+        "Fireball", "PowerTornado", "PowerEarthquake"
     ],
     "LockedBlueprints": ["house", "barrel", "oil-tank", "village", "laboratory", "dam", "volcano", "castle"],
     "Materials": [

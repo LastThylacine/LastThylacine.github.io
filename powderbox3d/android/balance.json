@@ -9,7 +9,7 @@
     "OpenCooldownSeconds": 0,
     "BonusItems": 2,
     "GiftItems": 3,
-    "LockedMaterials": ["Clone", "Void", "Virus", "PowerLightning", "Thermite"],
+    "LockedMaterials": ["Clone", "Void", "Virus", "PowerLightning", "Thermite", "PowerEarthquake"],
     "LockedBlueprints": ["village", "laboratory", "volcano", "castle"],
     "Materials": [
         { "Id": "Clone", "Videos": 2 },
